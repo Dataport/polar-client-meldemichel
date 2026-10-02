@@ -1,0 +1,17 @@
+node_modules
+.eslintcache
+
+**/.eslintcache
+**/*.tgz
+**/.cache
+**/coverage
+**/dist
+/*.log
+logs/*.log
+logs
+
+.idea
+.vscode/settings.json
+.DS_Store
+*.patch
+

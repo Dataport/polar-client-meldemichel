@@ -1,0 +1,108 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 20
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 20
+    cooldown:
+      default-days: 3
+      exclude:
+        - "@polar/polar"
+        - "@dataport/eslint-config-geodev"
+        - vite-plugin-kern-extra-icons
+    commit-message:
+      prefix: chore
+      include: scope
+    versioning-strategy: increase
+    ignore:
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
+    groups:
+      polar:
+        patterns:
+          - "@polar/*"
+      quality:
+        patterns:
+          - eslint
+          - eslint-config-prettier
+          - eslint-plugin-import-x
+          - eslint-plugin-prettier
+          - prettier
+          - "@commitlint/cli"
+          - "@commitlint/config-conventional"
+          - "@dataport/eslint-config-geodev"
+          - vitest
+          - "@vitest/coverage-v8"
+          - "@vitest/ui"
+          - "@vue/test-utils"
+          - "@pinia/testing"
+          - jsdom
+          - husky
+        update-types:
+          - minor
+          - patch
+      build-tooling:
+        patterns:
+          - vite
+          - vite-plugin-*
+          - "@vitejs/plugin-vue"
+          - unplugin-dts
+          - "@microsoft/api-extractor"
+          - copyfiles
+        update-types:
+          - minor
+          - patch
+      vue-ecosystem:
+        patterns:
+          - vue
+          - vue-tsc
+          - pinia
+          - "@vue/tsconfig"
+        update-types:
+          - minor
+          - patch
+      types:
+        patterns:
+          - "@types/*"
+        update-types:
+          - minor
+          - patch
+      map:
+        patterns:
+          - ol
+        update-types:
+          - minor
+          - patch
+      typescript:
+        patterns:
+          - typescript
+        update-types:
+          - minor
+          - patch
+      misc:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
