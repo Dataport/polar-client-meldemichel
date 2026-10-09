@@ -17,6 +17,10 @@
 	"main": "dist/polar-client.js",
 	"module": "dist/polar-client.js",
 	"types": "dist/polar-client.d.ts",
+	"engines": {
+		"node": "^24.15.0",
+		"npm": "^11.12.1"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/polar-client.d.ts",
