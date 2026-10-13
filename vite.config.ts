@@ -1,9 +1,9 @@
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'node:path'
 import dts from 'unplugin-dts/vite'
+import { defineConfig } from 'vite'
 import checker from 'vite-plugin-checker'
 import kernExtraIcons from 'vite-plugin-kern-extra-icons'
-import { defineConfig } from 'vitest/config'
 
 export default defineConfig(({ mode }) => ({
 	plugins: [
