@@ -6,6 +6,7 @@ import checker from 'vite-plugin-checker'
 import kernExtraIcons from 'vite-plugin-kern-extra-icons'
 
 export default defineConfig(({ mode }) => ({
+	root: 'src',
 	plugins: [
 		vue({
 			template: {
