@@ -55,7 +55,7 @@
 	},
 	"peerDependencies": {
 		"@kern-ux/native": "^2.8.2",
-		"@polar/polar": "^3.0.0-alpha.5",
+		"@polar/polar": "^3.0.0-alpha.6",
 		"ol": "10.9.0",
 		"pinia": "^4.0.3",
 		"vue": "^3.5.43"
