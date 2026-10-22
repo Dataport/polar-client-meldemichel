@@ -55,10 +55,3 @@ export const SKAT = [
 ] as const
 
 export const REPORT_STATUS = ['In Bearbeitung', 'abgeschlossen'] as const
-
-export const TIME_FILTER = {
-	NONE: 0,
-	DAYS_7: 1,
-	DAYS_30: 2,
-	SELECTABLE: 3,
-} as const

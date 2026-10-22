@@ -7,8 +7,7 @@ import type { FilterPluginOptions } from '@polar/polar/plugins/filter'
 import type { MeldemichelCreateMapParams } from './types'
 
 import { MODE, REPORT_STATUS, SKAT } from './enums'
-// TODO: Add unique locales
-// import locales from './locales'
+import locales from './locales'
 // TODO: Add tooltip
 // import { showTooltip } from './utils/showTooltip'
 
@@ -24,25 +23,25 @@ const commonMapConfiguration: MapConfiguration = {
 	checkServiceAvailability: false, // service register too long
 	colorScheme: 'light', // TODO: Change to system once bug is fixed
 	startCenter: [565874, 5934140],
-	// locales,
+	locales,
 	layers: [
 		{
 			id: stadtplan,
 			visibility: true,
 			type: 'background',
-			name: 'meldemichel.layers.stadtplan',
+			name: 'Stadtplan',
 		},
 		{
 			id: luftbilder,
 			type: 'background',
-			name: 'meldemichel.layers.luftbilder',
+			name: 'Luftbildansicht',
 		},
 		{
 			id: hamburgBorder,
 			visibility: true,
 			hideInMenu: true,
 			type: 'mask',
-			name: 'meldemichel.layers.hamburgBorder',
+			name: 'Stadtgrenze Hamburg',
 		},
 	],
 
@@ -66,11 +65,11 @@ const commonAttributions: AttributionsPluginOptions = {
 	layerAttributions: [
 		{
 			id: stadtplan,
-			title: 'meldemichel.attributions.stadtplan',
+			title: 'stadtplan',
 		},
 		{
 			id: luftbilder,
-			title: 'meldemichel.attributions.luftbilder',
+			title: 'luftbilder',
 		},
 	],
 }
@@ -137,7 +136,7 @@ const mapConfigurations: Record<
 					id: reportServiceId,
 					visibility: true,
 					type: 'mask',
-					name: 'meldemichel.layers.reports',
+					name: 'Meldungen',
 				},
 			],
 			attributions: {
@@ -146,7 +145,7 @@ const mapConfigurations: Record<
 					...(commonAttributions.layerAttributions as Attribution[]),
 					{
 						id: reportServiceId,
-						title: 'meldemichel.attributions.reports',
+						title: 'reports',
 					},
 				],
 				staticAttributions: [
@@ -192,7 +191,8 @@ const mapConfigurations: Record<
 				id: stadtwald,
 				visibility: false,
 				type: 'mask',
-				name: 'meldemichel.layers.stadtwald',
+				// TODO: Layers can not yet bet localized ._. -> Change in POLAR
+				name: 'Stadtwald',
 			},
 		],
 		attributions: {
@@ -201,7 +201,7 @@ const mapConfigurations: Record<
 				...(commonAttributions.layerAttributions as Attribution[]),
 				{
 					id: stadtwald,
-					title: 'meldemichel.attributions.stadtwald',
+					title: 'stadtwald',
 				},
 			],
 		},

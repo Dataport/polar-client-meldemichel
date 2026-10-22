@@ -7,6 +7,7 @@ import LayerChooser from '@polar/polar/plugins/layerChooser'
 import Zoom from '@polar/polar/plugins/zoom'
 
 import { MODE } from '../enums'
+import { skat } from '../locales'
 // TODO: Re-implement GFI like it is supposed to be done now
 // import MeldemichelGfiFeature from '../plugins/Gfi'
 
@@ -26,7 +27,6 @@ export default function (mode: keyof typeof MODE) {
 					layers: {},
 					// gfiContentComponent: MeldemichelGfiFeature,
 					// TODO: Width of featureList is scuffed AF
-					// TODO It doesn't show objects if the features are shown immediately --> only after moving
 					featureList: {
 						activeLayers: {
 							plugin: 'layerChooser',
@@ -37,7 +37,9 @@ export default function (mode: keyof typeof MODE) {
 						text: {
 							title: (feature) =>
 								`${feature.get('str')} ${feature.get('hsnr')}`,
-							subtitle: (feature) => `meldemichel.skat.${feature.get('skat')}`,
+							// TODO: String cant be translated, ready string is wanted ._. --> Change in POLAR
+							subtitle: (feature) =>
+								skat[feature.get('skat') as keyof typeof skat],
 							subSubtitle: (feature) => feature.get('beschr'),
 						},
 						bindWithCoreHoverSelect: true,
