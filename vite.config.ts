@@ -32,8 +32,8 @@ export default defineConfig(({ mode }) => ({
 			: []),
 	],
 	resolve: {
-		// Ensure a single Vue/Pinia runtime is used across POLAR and this client.
-		dedupe: ['vue', 'pinia'],
+		// Ensure a single Vue/Pinia/OpenLayers runtime is used across POLAR and this client.
+		dedupe: ['vue', 'pinia', 'ol'],
 	},
 	server: {
 		port: 1337,

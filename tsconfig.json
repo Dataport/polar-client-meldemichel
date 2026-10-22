@@ -5,6 +5,10 @@
 	],
 	"compilerOptions": {
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"paths": {
+			"ol": ["./node_modules/ol"],
+			"ol/*": ["./node_modules/ol/*"]
+		},
 		"types": [
 			"vitest/importMeta",
 			"vitest/jsdom",
