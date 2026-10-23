@@ -62,7 +62,7 @@
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^21.2.4",
-		"@commitlint/config-conventional": "^21.2.3",
+		"@commitlint/config-conventional": "^21.2.4",
 		"@dataport/eslint-config-geodev": "^2.0.0-alpha.3",
 		"@microsoft/api-extractor": "^7.59.3",
 		"@pinia/testing": "^2.0.2",
@@ -70,7 +70,7 @@
 		"@types/node": "^24.19.2",
 		"@vitejs/plugin-vue": "^6.0.10",
 		"@vitest/coverage-v8": "^5.0.5",
-		"@vitest/ui": "^5.0.4",
+		"@vitest/ui": "^5.0.5",
 		"@vue/test-utils": "^2.5.1",
 		"@vue/tsconfig": "^0.9.0",
 		"copyfiles": "^2.4.1",
@@ -86,7 +86,7 @@
 		"vite": "^8.3.4",
 		"vite-plugin-checker": "^0.14.5",
 		"vite-plugin-kern-extra-icons": "^1.0.1",
-		"vitest": "^5.0.4",
+		"vitest": "^5.0.5",
 		"vue-tsc": "^3.3.13"
 	}
 }
