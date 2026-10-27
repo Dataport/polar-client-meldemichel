@@ -28,6 +28,12 @@ or download it from the [release page](https://github.com/Dataport/polar-client-
 When using `import mapClient from '@polar/client-meldemichel'`, the object `mapClient` contains a method `createMap`.
 This is the main method required to get the client up and running. Should you use another import method, check the package's `dist` folder for available files.
 
+The styling needs to be applied by importing POLARs stylesheet once.
+
+```js
+import '@polar/client-meldemichel/polar.css'
+```
+
 The method expects a single object with the following parameters.
 It returns a Promise of a map instance. This returned instance is required to retrieve information from the map.
 
@@ -39,12 +45,6 @@ It returns a Promise of a map instance. This returned instance is required to re
 | `configOverride` | `object?` | This can be used to override the configuration of any installed plugin; see full documentation. It is also used to set initial pins in `SINGLE` mode. See documentation of `SINGLE` further below. |
 | `reportServiceId` | `string?` | `COMPLETE` mode only. ID of the report layer to display. Both the Filter and the Feature List will work with this layer. The client will also provide tooltips and cluster the features. |
 | `stadtwaldActive` | `boolean?` | This layer only works in `'SINGLE'` mode and should not be activated in the others. If not set, any existing previous state is kept; off by default. |
-
-The styling is applied by importing POLARs stylesheet once.
-
-```js
-import '@polar/polar/polar.css'
-```
 
 TODO: All the following sections (except Stay in Touch) need to be adjusted
 
