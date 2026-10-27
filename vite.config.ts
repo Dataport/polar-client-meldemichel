@@ -60,6 +60,7 @@ export default defineConfig(({ mode }) => ({
 		},
 	},
 	test: {
+		passWithNoTests: true,
 		environment: 'jsdom',
 		include: ['src/**/*.spec.ts'],
 		includeSource: ['src/**/*.ts'],
