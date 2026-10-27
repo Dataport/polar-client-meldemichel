@@ -25,16 +25,17 @@
 			</div>
 		</div>
 		<script type="module">
-      import client from './polar-client.js'
-	  import './polar.css'
+			// TODO: Doesn't work yet, importmap or UMD build is missing
+			import client from './polar-client.js'
+	  		import './polar.css'
 
-      client.createMap({
-        containerId: 'polarstern',
-        mode: 'COMPLETE',
-        // remove 'qs.' to link to productive service
-        afmUrl: `https://qs.am.hamburg.de/intelliform/forms/HH/standard/mml_melde_michel/mml_melde_michel/index`,
-        reportServiceId: '6059', // stage: '6061'; prod: '6059'
-      })
+      		client.createMap({
+        		containerId: 'polarstern',
+        		mode: 'COMPLETE',
+        		// remove 'qs.' to link to productive service
+        		afmUrl: `https://qs.am.hamburg.de/intelliform/forms/HH/standard/mml_melde_michel/mml_melde_michel/index`,
+        		reportServiceId: '6059', // stage: '6061'; prod: '6059'
+      		})
 		</script>
 	</body>
 </html>
