@@ -5,8 +5,8 @@ import { defineConfig } from 'vite'
 import checker from 'vite-plugin-checker'
 import kernExtraIcons from 'vite-plugin-kern-extra-icons'
 
-export default defineConfig(({ mode }) => ({
-	root: 'src',
+export default defineConfig(({ command, isPreview, mode }) => ({
+	root: command === 'serve' && !isPreview ? 'src' : import.meta.dirname,
 	plugins: [
 		vue({
 			template: {
