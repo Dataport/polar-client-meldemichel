@@ -34,7 +34,6 @@
 	"files": [
 		"dist/**/*",
 		"example/**/*",
-		"API.md",
 		"CHANGELOG.md",
 		"README.md"
 	],
