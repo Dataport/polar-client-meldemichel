@@ -52,19 +52,19 @@
 		"prepare": "node .husky/install.js"
 	},
 	"dependencies": {
-		"es-toolkit": "^1.52.0"
-	},
-	"peerDependencies": {
-		"@kern-ux/native": "^2.8.2",
 		"@polar/polar": "^3.0.0-alpha.7",
-		"ol": "10.9.0",
-		"pinia": "^4.0.3",
-		"vue": "^3.5.43"
+		"es-toolkit": "^1.52.0",
+		"i18next": "^26.5.8",
+		"i18next-vue": "^5.4.0",
+		"ol": "10.10.0",
+		"pinia": "^4.1.0",
+		"vue": "^3.5.44"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^21.2.4",
 		"@commitlint/config-conventional": "^21.2.4",
 		"@dataport/eslint-config-geodev": "^2.0.0-alpha.3",
+		"@kern-ux/native": "^2.8.2",
 		"@microsoft/api-extractor": "^7.59.3",
 		"@pinia/testing": "^2.0.2",
 		"@types/geojson": "7946.0.16",

@@ -31,10 +31,6 @@ export default defineConfig(({ command, isPreview, mode }) => ({
 				]
 			: []),
 	],
-	resolve: {
-		// Ensure a single Vue/Pinia/OpenLayers runtime is used across POLAR and this client.
-		dedupe: ['vue', 'pinia', 'ol'],
-	},
 	server: {
 		port: 1337,
 	},
@@ -47,17 +43,6 @@ export default defineConfig(({ command, isPreview, mode }) => ({
 		},
 		sourcemap: true,
 		target: 'esnext',
-		rollupOptions: {
-			// Provided by the host / shared with POLAR at runtime, not bundled.
-			external: [
-				'vue',
-				'pinia',
-				'ol',
-				/^ol\//,
-				'@polar/polar',
-				/^@polar\/polar\//,
-			],
-		},
 	},
 	test: {
 		passWithNoTests: true,
@@ -73,5 +58,6 @@ export default defineConfig(({ command, isPreview, mode }) => ({
 	define: {
 		// Strip in-source test blocks from production builds.
 		'import.meta.vitest': 'undefined',
+		'process.env.NODE_ENV': JSON.stringify('production'),
 	},
 }))
