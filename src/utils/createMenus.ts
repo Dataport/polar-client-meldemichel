@@ -37,7 +37,7 @@ export default function (mode: keyof typeof MODE) {
 						text: {
 							title: (feature) =>
 								`${feature.get('str')} ${feature.get('hsnr')}`,
-							// TODO: String cant be translated, ready string is wanted ._. --> Change in POLAR
+							// TODO: String cant be translated, ready string is wanted ._. --> Change in POLAR --> Is "useTranslation" the solution?
 							subtitle: (feature) =>
 								skat[feature.get('skat') as keyof typeof skat],
 							subSubtitle: (feature) => feature.get('beschr'),
