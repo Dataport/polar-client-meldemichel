@@ -44,6 +44,19 @@ const commonMapConfiguration: MapConfiguration = {
 		},
 	],
 
+	// TODO: Document in POLAR, that css needs to be imported if not set here
+	theme: {
+		kern: {
+			typography: {
+				font: {
+					family: {
+						default: 'Arial, sans-serif',
+					},
+				},
+			},
+		},
+	},
+
 	/* TODO: Change theme through KERN
 	vuetify: {
 		theme: {

@@ -22,7 +22,6 @@ import { setBackgroundImage } from './utils/setBackgroundImage'
 import { addPlugin } from '@polar/polar'
 import AfmButton from './plugins/AfmButton'
 import meldemichelModule from './store/module'
-import './styles/index.css'
 */
 
 // eslint-disable-next-line no-console

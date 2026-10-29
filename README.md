@@ -28,12 +28,6 @@ or download it from the [release page](https://github.com/Dataport/polar-client-
 When using `import mapClient from '@polar/client-meldemichel'`, the object `mapClient` contains a method `createMap`.
 This is the main method required to get the client up and running. Should you use another import method, check the package's `dist` folder for available files.
 
-The styling needs to be applied by importing POLARs stylesheet once.
-
-```js
-import '@polar/client-meldemichel/polar.css'
-```
-
 The method expects a single object with the following parameters.
 It returns a Promise of a map instance. This returned instance is required to retrieve information from the map.
 
