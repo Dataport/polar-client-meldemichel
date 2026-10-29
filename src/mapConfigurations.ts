@@ -8,8 +8,7 @@ import type { MeldemichelCreateMapParams } from './types'
 
 import { MODE, REPORT_STATUS, SKAT } from './enums'
 import locales from './locales'
-// TODO: Add tooltip
-// import { showTooltip } from './utils/showTooltip'
+import { showTooltip } from './utils/showTooltip'
 
 export const stadtwald = '18746'
 const stadtplan = '453'
@@ -169,7 +168,7 @@ const mapConfigurations: Record<
 							'start',
 							'statu',
 						],
-						// showTooltip,
+						showTooltip,
 					},
 				},
 			},
