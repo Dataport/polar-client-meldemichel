@@ -16,13 +16,13 @@ import { addPlugins } from './addPlugins'
 import { MODE } from './enums'
 import { getMapConfiguration, hamburgBorder } from './mapConfigurations'
 import { enableClustering } from './utils/enableClustering'
+import { setBackgroundImage } from './utils/setBackgroundImage'
 
 /*
 import { addPlugin } from '@polar/polar'
 import AfmButton from './plugins/AfmButton'
 import meldemichelModule from './store/module'
 import './styles/index.css'
-import { setBackgroundImage } from './utils/setBackgroundImage'
 */
 
 // eslint-disable-next-line no-console
@@ -94,6 +94,8 @@ export const createMap = async ({
 		register
 	)
 
+	setBackgroundImage(client)
+
 	addPlugins(client, mode)
 
 	// TODO: Replace with a simple addPlugin which uses the store.
@@ -111,8 +113,7 @@ export const createMap = async ({
 			} */
 
 	hideBorder(client.store.map)
-	// TODO: Check whether this still works
-	// setBackgroundImage(containerId)
+
 	/* if (typeof stadtwaldActive === 'boolean') {
 				// TODO: Replace with new call
 				client.$store.dispatch('meldemichel/setMapState', {
