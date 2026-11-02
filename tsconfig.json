@@ -13,9 +13,9 @@
 			"vitest/importMeta",
 			"vitest/jsdom",
 			"node",
-			"vite-plugin-kern-extra-icons/client"
+			"vite-plugin-kern-extra-icons/client",
+			"i18next-vue"
 		],
-
 		"noImplicitAny": false,
 		"importHelpers": true,
 		"experimentalDecorators": true,
