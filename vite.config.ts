@@ -44,6 +44,9 @@ export default defineConfig(({ command, isPreview, mode }) => ({
 		sourcemap: true,
 		target: 'esnext',
 	},
+	resolve: {
+		dedupe: ['vue', 'pinia', 'i18next', 'i18next-vue', 'ol'],
+	},
 	test: {
 		passWithNoTests: true,
 		environment: 'jsdom',
