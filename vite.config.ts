@@ -9,6 +9,9 @@ export default defineConfig(({ command, isPreview, mode }) => ({
 	root: command === 'serve' && !isPreview ? 'src' : import.meta.dirname,
 	plugins: [
 		vue({
+			features: {
+				customElement: true,
+			},
 			template: {
 				compilerOptions: {
 					// `polar-map` and `kern-*` are custom elements provided at runtime.
