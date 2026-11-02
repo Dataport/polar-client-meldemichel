@@ -45,7 +45,7 @@
 		"lint:fix": "npm run lint -- --fix",
 		"lint:css": "stylelint --ignore-path .gitignore \"{src,examples}/**/*.{css,html,vue}\"",
 		"lint:css:fix": "npm run lint:css -- --fix",
-		"tsc": "tsc && vue-tsc --noEmit",
+		"tsc": "vue-tsc",
 		"test": "vitest",
 		"test:ci": "vitest run",
 		"test:coverage": "vitest run --coverage --ui",
