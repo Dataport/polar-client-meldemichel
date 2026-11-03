@@ -2,7 +2,7 @@ import 'i18next'
 
 import type { LocaleResources } from '@polar/polar'
 import type { meldemichelDe } from '../locales'
-import type { afmButtonDe } from '../plugins/AfmButton/locales'
+import type { afmButtonDe } from '../plugins/afmButton/locales'
 
 declare module 'i18next' {
 	interface CustomTypeOptions {
