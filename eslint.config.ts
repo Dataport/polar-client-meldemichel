@@ -6,6 +6,7 @@ import markdownConfig from '@dataport/eslint-config-geodev/markdown'
 import plugins from '@dataport/eslint-config-geodev/plugins'
 import tsConfig from '@dataport/eslint-config-geodev/typescript'
 import vueConfig from '@dataport/eslint-config-geodev/vue'
+import jsInHtml from 'eslint-plugin-html'
 import importX from 'eslint-plugin-import-x'
 import prettierConfig from 'eslint-plugin-prettier/recommended'
 import { defineConfig } from 'eslint/config'
@@ -181,6 +182,14 @@ export default defineConfig([
 	},
 	{
 		files: ['**/*.html'],
-		extends: [htmlConfig, clientHtmlConfig],
+		plugins: { jsInHtml },
+		extends: [
+			mainConfig,
+			browserConfig,
+			prettierConfig,
+			clientConfig,
+			htmlConfig,
+			clientHtmlConfig,
+		],
 	},
 ])
