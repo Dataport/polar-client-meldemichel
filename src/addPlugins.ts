@@ -113,6 +113,7 @@ export const addPlugins = (
 					plugin: 'addressSearch',
 					key: 'selectResult',
 				},
+				forwardOriginatingChanges: true,
 				zoomTo: 7,
 			}),
 		].filter((x) => x /* remove `false` entries */) as PluginContainer[]

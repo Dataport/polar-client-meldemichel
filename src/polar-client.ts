@@ -3,29 +3,32 @@ import type { Map } from 'ol'
 import type { Vector } from 'ol/layer'
 import type { MeldemichelCreateMapParams } from './types'
 
-import { getStore } from '@polar/polar'
+import { addPlugin } from '@polar/polar'
 import {
 	fetchServiceRegister,
 	createMap as originalCreateMap,
 	updateState,
 } from '@polar/polar'
+import { usePinsStore } from '@polar/polar/plugins/pins/store'
 import { toMerged } from 'es-toolkit'
 
 import packageInfo from '../package.json'
 import { addPlugins } from './addPlugins'
 import { MODE } from './enums'
 import { getMapConfiguration, hamburgBorder } from './mapConfigurations'
+import meldemichel from './plugins/meldemichel'
+import { useMeldemichelStore } from './plugins/meldemichel/store'
 import { enableClustering } from './utils/enableClustering'
 import { setBackgroundImage } from './utils/setBackgroundImage'
 
 /*
-import { addPlugin } from '@polar/polar'
 import AfmButton from './plugins/AfmButton'
-import meldemichelModule from './store/module'
 */
 
 // eslint-disable-next-line no-console
-console.log(`POLAR Meldemichel loaded in version ${packageInfo.version}.`)
+console.log(
+	`@polar/client-meldemichel loaded in version ${packageInfo.version}.`
+)
 
 const serviceRegister =
 	'https://geoportal-hamburg.de/lgv-config/services-internet.json'
@@ -46,7 +49,7 @@ export const createMap = async ({
 	containerId,
 	mode,
 	afmUrl,
-	// stadtwaldActive,
+	stadtwaldActive,
 	reportServiceId,
 	configOverride,
 }: MeldemichelCreateMapParams) => {
@@ -60,18 +63,14 @@ export const createMap = async ({
 				...memory.store.configuration,
 				pins: configOverride.pins,
 			})
-			getStore(memory, 'pins').setupInitial()
+			usePinsStore().setupInitial()
 		}
 
-		/* if (typeof stadtwaldActive === 'boolean') {
-			// TODO: Adjust meldemichel everywhere to external-meldemichel
-			const meldemichelStore = getStore(memory, 'external-meldemichel')
-
-			// TODO: If statement might be redundant, check later
-			if (meldemichelStore) {
-				meldemichelStore.setMapState({ stadtwaldActive })
-			}
-		}*/
+		if (typeof stadtwaldActive === 'boolean') {
+			useMeldemichelStore().setMapState({
+				stadtwaldActive,
+			})
+		}
 		return memory
 	}
 	if (!Object.keys(MODE).includes(mode)) {
@@ -96,9 +95,7 @@ export const createMap = async ({
 	setBackgroundImage(client)
 
 	addPlugins(client, mode)
-
-	// TODO: Replace with a simple addPlugin which uses the store.
-	// client.$store.registerModule('meldemichel', meldemichelModule)
+	addPlugin(client, meldemichel())
 
 	/* if (mode === MODE.COMPLETE) {
 				// late setup due to dependency to meldemichelModule
@@ -113,12 +110,11 @@ export const createMap = async ({
 
 	hideBorder(client.store.map)
 
-	/* if (typeof stadtwaldActive === 'boolean') {
-				// TODO: Replace with new call
-				client.$store.dispatch('meldemichel/setMapState', {
-					stadtwaldActive,
-				})
-			} */
+	if (typeof stadtwaldActive === 'boolean') {
+		useMeldemichelStore().setMapState({
+			stadtwaldActive,
+		})
+	}
 	memory = client
 	return client
 }

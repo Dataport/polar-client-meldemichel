@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<script type="module">
-			import { getStore } from '@polar/polar'
+			import { getStore, subscribe } from '@polar/polar'
 
 			import client from './polar-client'
 
@@ -55,62 +55,63 @@
 				reportServiceId: stage ? '6061' : '6059',
 				// stadtwaldActive: true, // false
 				/*
-                configOverride: {
-                  pins: {
-                    initial: {
-                      centerOn: true,
-                      coordinates,
-                    },
-                    movable: movablePin,
-                    style: {
-                      fill: movablePin === 'drag' ? '#0392cf' : '#ff0019',
-                    },
-                  },
-                },
-                */
+			             configOverride: {
+			               pins: {
+			                 initial: {
+			                   centerOn: true,
+			                   coordinates,
+			                 },
+			                 movable: movablePin,
+			                 style: {
+			                   fill: movablePin === 'drag' ? '#0392cf' : '#ff0019',
+			                 },
+			               },
+			             },
+			             */
 			})
 
-            // added to window for testing
-            /* window._polar = {
-                mapInstance,
-                setMapState: () =>
-				  // TODO: Update to new syntax
-                  mapInstance.$store.dispatch('meldemichel/setMapState', {
-                    vendor_maps_position: '566167.224436667,5935872.419250831',
-                    // inconsistency intentional to test whether field is autofilled
-                    vendor_maps_address_str: 'Mümmelmannsberg',
-                    vendor_maps_address_hnr: '72',
-                    mapZoomLevel: 6,
-                    mapBaseLayer: 34127,
-                    mapCenter: '566808.8386735287,5935896.23173797',
-                  }),
-              }*/
+			// added to window for testing
+			window._polar = {
+				mapInstance,
+				setMapState: () =>
+					getStore(mapInstance, 'external-meldemichel').setMapState({
+						vendor_maps_position: '566167.224436667,5935872.419250831',
+						// inconsistency intentional to test whether field is autofilled
+						vendor_maps_address_str: 'Mümmelmannsberg',
+						vendor_maps_address_hnr: '72',
+						mapZoomLevel: 6,
+						mapBaseLayer: 34127,
+						mapCenter: '566808.8386735287,5935896.23173797',
+					}),
+			}
 
-			// TODO: Update to new syntax
-			/* mapInstance.$store.watch(
-                (_, getters) => getters["meldemichel/mapState"],
-                ({
-                    mapCenter,
-                    mapZoomLevel,
-                  mapBaseLayer,
-                  vendor_maps_position,
-                  vendor_maps_address_hnr,
-                  vendor_maps_address_str,
-                  vendor_maps_address_plz,
-                  vendor_maps_distance_to
-                }) => {
-                  // do anything with the map values here
-                  console.info(`MapState Update
-                    Center coordinate: ${mapCenter}
-                    Zoom level: ${mapZoomLevel}
-                    Base layer: ${mapBaseLayer}
-                    Pin Coordinate: ${vendor_maps_position}
-                    Address: ${vendor_maps_address_str + ' ' + vendor_maps_address_hnr}
-                    PLZ: ${vendor_maps_address_plz}
-                    Distance to address: ${vendor_maps_distance_to}`)
-                },
-                { immediate: true }
-              )*/
+			subscribe(
+				mapInstance,
+				'external-meldemichel',
+				'mapState',
+				({
+					mapCenter,
+					mapZoomLevel,
+					mapBaseLayer,
+					vendor_maps_position,
+					vendor_maps_address_hnr,
+					vendor_maps_address_str,
+					vendor_maps_address_plz,
+					vendor_maps_distance_to,
+				}) => {
+					// do anything with the map values here
+					// eslint-disable-next-line no-console
+					console.info(`MapState Update
+		Center coordinate: ${mapCenter}
+		Zoom level: ${mapZoomLevel}
+		Base layer: ${mapBaseLayer}
+		Pin Coordinate: ${vendor_maps_position}
+		Address: ${vendor_maps_address_str + ' ' + vendor_maps_address_hnr}
+		PLZ: ${vendor_maps_address_plz}
+		Distance to address: ${vendor_maps_distance_to}`)
+				},
+				{ immediate: true }
+			)
 		</script>
 	</body>
 </html>
