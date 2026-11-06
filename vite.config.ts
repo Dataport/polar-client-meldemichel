@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'node:path'
 import dts from 'unplugin-dts/vite'
-import { defineConfig } from 'vite'
+import { defineConfig, normalizePath } from 'vite'
 import checker from 'vite-plugin-checker'
 import kernExtraIcons from 'vite-plugin-kern-extra-icons'
 
@@ -19,7 +19,12 @@ export default defineConfig(({ command, isPreview, mode }) => ({
 				},
 			},
 		}),
-		kernExtraIcons({ cssLayer: 'kern-ux-icons' }),
+		kernExtraIcons({
+			cssLayer: 'kern-ux-icons',
+			// When using npm linked @polar/polar, it resolves outside `node_modules` and would be scanned as well.
+			ignoreFilename: (name) =>
+				!name.startsWith(`${normalizePath(import.meta.dirname)}/`),
+		}),
 		dts({ bundleTypes: true, processor: 'vue' }),
 		...(mode === 'development'
 			? [

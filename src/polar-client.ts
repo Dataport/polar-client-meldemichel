@@ -11,6 +11,7 @@ import {
 } from '@polar/polar'
 import { usePinsStore } from '@polar/polar/plugins/pins/store'
 import { toMerged } from 'es-toolkit'
+import kernExtraIcons from 'virtual:kern-extra-icons'
 
 import packageInfo from '../package.json'
 import { addPlugins } from './addPlugins'
@@ -91,6 +92,8 @@ export const createMap = async ({
 		),
 		register
 	)
+	// TODO: Document in POLAR and vite-plugin-kern-extra-icons that clients have to add their own extra icons sheet to the shadowRoot if they were to use additional ones.
+	client.shadowRoot?.adoptedStyleSheets.push(kernExtraIcons)
 
 	setBackgroundImage(client)
 
