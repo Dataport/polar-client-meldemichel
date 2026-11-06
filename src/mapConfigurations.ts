@@ -112,9 +112,9 @@ const getFilterConfiguration = (id: string): FilterPluginOptions => ({
 
 const mapConfigurations: Record<
 	keyof typeof MODE,
-	(reportServiceId: string, afmUrl: string) => MapConfiguration
+	(reportServiceId: string) => MapConfiguration
 > = {
-	[MODE.COMPLETE]: (reportServiceId: string /*, afmUrl: string*/) => {
+	[MODE.COMPLETE]: (reportServiceId: string) => {
 		return {
 			...commonMapConfiguration,
 			markers: {
@@ -185,10 +185,6 @@ const mapConfigurations: Record<
 					},
 				},
 			},
-
-			/* meldemichel: {
-				afmButton: { afmUrl },
-			},*/
 		}
 	},
 	[MODE.REPORT]: () => ({
@@ -222,11 +218,10 @@ const mapConfigurations: Record<
 
 export const getMapConfiguration = ({
 	mode,
-	afmUrl,
 	reportServiceId,
 }: Pick<
 	MeldemichelCreateMapParams,
-	'mode' | 'afmUrl' | 'reportServiceId'
+	'mode' | 'reportServiceId'
 >): MapConfiguration => {
 	if (mode === MODE.COMPLETE && typeof reportServiceId === 'undefined') {
 		throw new Error(
@@ -235,6 +230,6 @@ export const getMapConfiguration = ({
 	}
 	return {
 		// @ts-expect-error | reportServiceId might be undefined, but that's caught above for relevant cases
-		...mapConfigurations[mode](reportServiceId, afmUrl),
+		...mapConfigurations[mode](reportServiceId),
 	}
 }

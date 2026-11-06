@@ -13,7 +13,7 @@ import Scale from '@polar/polar/plugins/scale'
 import Toast from '@polar/polar/plugins/toast'
 
 import { MODE } from './enums'
-import { hamburgBorder, hamburgRed } from './mapConfigurations.ts'
+import { hamburgBorder, hamburgRed } from './mapConfigurations'
 import createMenus from './utils/createMenus'
 
 export const addPlugins = (

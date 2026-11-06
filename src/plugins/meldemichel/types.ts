@@ -1,3 +1,5 @@
+import type { PluginOptions } from '@polar/polar'
+
 export interface SetMapStatePayload {
 	mapBaseLayer?: number | string
 
@@ -31,4 +33,8 @@ export interface GetMapState {
 	 * Distance between address and marker.
 	 */
 	vendor_maps_distance_to: number
+}
+
+export interface MeldemichelPluginOptions extends PluginOptions {
+	afmUrl?: string
 }

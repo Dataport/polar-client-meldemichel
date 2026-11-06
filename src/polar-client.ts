@@ -22,10 +22,6 @@ import { useMeldemichelStore } from './plugins/meldemichel/store'
 import { enableClustering } from './utils/enableClustering'
 import { setBackgroundImage } from './utils/setBackgroundImage'
 
-/*
-import AfmButton from './plugins/AfmButton'
-*/
-
 // eslint-disable-next-line no-console
 console.log(
 	`@polar/client-meldemichel loaded in version ${packageInfo.version}.`
@@ -87,7 +83,7 @@ export const createMap = async ({
 	const client = await originalCreateMap(
 		containerId,
 		toMerged(
-			getMapConfiguration({ mode, afmUrl, reportServiceId }),
+			getMapConfiguration({ mode, reportServiceId }),
 			configOverride || {}
 		),
 		register
@@ -98,18 +94,14 @@ export const createMap = async ({
 	setBackgroundImage(client)
 
 	addPlugins(client, mode)
-	addPlugin(client, meldemichel())
-
-	/* if (mode === MODE.COMPLETE) {
-				// late setup due to dependency to meldemichelModule
-				addPlugin(
-					client,
-					AfmButton({
-						displayComponent: true,
-						layoutTag: NineLayoutTag.BOTTOM_RIGHT,
-					})
-				)
-			} */
+	addPlugin(
+		client,
+		meldemichel({
+			afmUrl,
+			displayComponent: mode === MODE.COMPLETE,
+			layoutTag: 'BOTTOM_RIGHT',
+		})
+	)
 
 	hideBorder(client.store.map)
 
