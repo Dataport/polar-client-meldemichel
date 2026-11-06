@@ -65,7 +65,7 @@
 		"@commitlint/config-conventional": "^21.2.4",
 		"@dataport/eslint-config-geodev": "^2.0.0-alpha.3",
 		"@kern-ux/native": "^2.8.2",
-		"@microsoft/api-extractor": "^7.60.0",
+		"@microsoft/api-extractor": "^7.60.1",
 		"@pinia/testing": "^2.0.2",
 		"@types/geojson": "7946.0.16",
 		"@types/node": "^24.19.2",
