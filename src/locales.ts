@@ -49,7 +49,7 @@ const filterCategory = {
 }
 
 export const meldemichelDe = {
-	// TODO: Update gfi locales once component is migrated
+	// TODO: Update gfi locales and move them to the plugin implementation once component is migrated
 	gfi: {
 		title: 'Meldung',
 		skat: 'Kategorie',
@@ -63,8 +63,7 @@ export const meldemichelDe = {
 			multiBodyUnresolvable: 'Klick zum Öffnen',
 		},
 	},
-	skat,
-	// TODO: Currently not used
+	// TODO: Currently not used, needed by gfi; move it there after component has been migrated
 	// status,
 } as const
 
