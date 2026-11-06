@@ -52,7 +52,7 @@
 		"prepare": "node .husky/install.js"
 	},
 	"dependencies": {
-		"@polar/polar": "^3.0.0-alpha.8",
+		"@polar/polar": "^3.0.0-alpha.9",
 		"es-toolkit": "^1.53.1",
 		"i18next": "^26.5.12",
 		"i18next-vue": "^5.4.0",
