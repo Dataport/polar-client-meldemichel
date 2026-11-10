@@ -41,6 +41,7 @@ It returns a Promise of a map instance. This returned instance is required to re
 | `stadtwaldActive` | `boolean?` | This layer only works in `'SINGLE'` mode and should not be activated in the others. If not set, any existing previous state is kept; off by default. |
 
 TODO: All the following sections (except Stay in Touch) need to be adjusted
+TODO: Also add a migration guide and all the breaking changes to the configuration
 
 #### Instance reuse
 
