@@ -30,7 +30,6 @@ export const addPlugins = (
 	originalAddPlugins(
 		client,
 		[
-			// TODO: Results flow out of the map (bottom)
 			AddressSearch({
 				displayComponent: mode !== MODE.SINGLE,
 				layoutTag: 'TOP_LEFT',
