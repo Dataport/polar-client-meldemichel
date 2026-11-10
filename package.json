@@ -39,7 +39,7 @@
 	],
 	"scripts": {
 		"dev": "vite --host",
-		"build": "vite build && copyfiles -f src/html/index.html dist && copyfiles -f node_modules/@polar/polar/dist/polar.css dist",
+		"build": "vite build && copyfiles -f src/html/index.html dist",
 		"preview": "vite preview",
 		"lint": "eslint --cache --cache-location .eslintcache --cache-strategy content .",
 		"lint:fix": "npm run lint -- --fix",
