@@ -1,6 +1,4 @@
 <template>
-	<!-- TODO: PolarTooltip may have to be updated so tooltips can be set on top as well (smallWidth) -->
-	<!-- 		:left="!hasSmallWidth"; :top="hasSmallWidth" -->
 	<PolarTooltip
 		:hint="$t(($) => $.afmButton.hint, { ns: 'external-meldemichel' })"
 		tooltip-position="left"
@@ -71,3 +69,17 @@ function click() {
 	}
 }
 </script>
+
+<style scoped>
+.kern-btn {
+	box-shadow: var(--polar-shadow);
+	border: solid transparent;
+
+	&:focus,
+	&:hover {
+		outline-offset: 0;
+		border: solid var(--kern-color-action-on-default);
+		outline: solid var(--kern-color-action-default);
+	}
+}
+</style>
