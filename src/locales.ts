@@ -38,7 +38,7 @@ export const skat = {
 	503: 'Gewässerverunreinigung',
 } satisfies Record<Skat, string>
 
-const status = {
+export const status = {
 	[REPORT_STATUS[0]]: 'In Bearbeitung',
 	[REPORT_STATUS[1]]: 'Bearbeitet',
 }
@@ -48,30 +48,10 @@ const filterCategory = {
 	statu: { title: 'Status', knownValue: status },
 }
 
-export const meldemichelDe = {
-	// TODO: Update gfi locales and move them to the plugin implementation once component is migrated
-	gfi: {
-		title: 'Meldung',
-		skat: 'Kategorie',
-		beschr: 'Beschreibung',
-		rueck: 'Rückmeldung',
-		start: 'Gemeldet am',
-		statu: 'Status',
-		tooltip: {
-			multiHeader: 'Mehrere Anliegen',
-			multiBody: 'Klick zum Zoomen',
-			multiBodyUnresolvable: 'Klick zum Öffnen',
-		},
-	},
-	// TODO: Currently not used, needed by gfi; move it there after component has been migrated
-	// status,
-} as const
-
 const locales: Locale[] = [
 	{
 		type: 'de',
 		resources: {
-			meldemichel: meldemichelDe,
 			shared: {
 				pagination: {
 					entries:
@@ -98,24 +78,6 @@ const locales: Locale[] = [
 					boundaryError:
 						'Die Verortung ist fehlgeschlagen. Bitte benutzen Sie Karte und Suche, um einen Schaden innerhalb von Hamburg zu melden.',
 				},
-			},
-			gfi: {
-				header: {
-					close: 'Zurück zur Listenansicht der Meldungen',
-					closeToList: 'Zurück zur Listenansicht der Meldungen',
-				},
-				list: {
-					header: 'Meldungsliste',
-					emptyView:
-						'Im aktuellen Kartenausschnitt sind keine Meldungen enthalten.',
-				},
-				switch: {
-					previous: 'Vorangehende Meldung',
-					next: 'Nächste Meldung',
-					entryXOfY: 'Meldung {{index}} von {{count}}',
-				},
-				noActiveLayer:
-					'Die Meldungen sind derzeit ausgeschaltet. Sie können Sie über die Kartenauswahl (Buch-Symbol in der Werkzeugleiste) wieder einschalten.',
 			},
 			iconMenu: {
 				hints: {

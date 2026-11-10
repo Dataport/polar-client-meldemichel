@@ -171,6 +171,7 @@ const mapConfigurations: Record<
 			gfi: {
 				layers: {
 					[reportServiceId]: {
+						title: 'gfi:title',
 						geometry: false,
 						window: true,
 						// translation in meldemichel's local gfi override

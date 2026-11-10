@@ -2,14 +2,12 @@ import type { Menu } from '@polar/polar/plugins/iconMenu'
 
 import Filter from '@polar/polar/plugins/filter'
 import Fullscreen from '@polar/polar/plugins/fullscreen'
-import Gfi from '@polar/polar/plugins/gfi'
 import LayerChooser from '@polar/polar/plugins/layerChooser'
 import Zoom from '@polar/polar/plugins/zoom'
 
 import { MODE } from '../enums'
 import { skat } from '../locales'
-// TODO: Re-implement GFI like it is supposed to be done now
-// import MeldemichelGfiFeature from '../plugins/Gfi'
+import Gfi from '../plugins/gfi'
 
 export default function (mode: keyof typeof MODE) {
 	return [
@@ -25,9 +23,8 @@ export default function (mode: keyof typeof MODE) {
 			mode === MODE.COMPLETE && {
 				plugin: Gfi({
 					layers: {},
-					// gfiContentComponent: MeldemichelGfiFeature,
-					// TODO: Width of featureList is scuffed AF
 					featureList: {
+						icon: 'kern-icon--checklist',
 						activeLayers: {
 							plugin: 'layerChooser',
 							key: 'activeMaskIds',
