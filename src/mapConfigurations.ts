@@ -14,13 +14,11 @@ export const stadtwald = '18746'
 const stadtplan = '453'
 const luftbilder = '34127'
 export const hamburgBorder = '1693' // boundary layer for pins / geolocalization
-// const hamburgWhite = '#ffffff'
-// const hamburgDarkBlue = '#003063'
 export const hamburgRed = '#ff0019'
 
 const commonMapConfiguration: MapConfiguration = {
 	checkServiceAvailability: false, // service register too long
-	colorScheme: 'light', // TODO: Change to system once bug is fixed
+	colorScheme: 'light', // TODO: Change to system once bug is fixed in POLAR
 	startCenter: [565874, 5934140],
 	locales,
 	layers: [
@@ -46,7 +44,26 @@ const commonMapConfiguration: MapConfiguration = {
 
 	// TODO: Document in POLAR, that css needs to be imported if not set here
 	theme: {
+		brandColor: {
+			l: '0.3133',
+			c: '0.1022',
+			h: '254.72',
+		},
 		kern: {
+			color: {
+				action: {
+					default:
+						'oklch(var(--brand-color-l) var(--brand-color-c) var(--brand-color-h))',
+					stateIndicator: {
+						shade: {
+							hover:
+								'oklch(calc(var(--brand-color-l) + 0.1) var(--brand-color-c) var(--brand-color-h))',
+							active:
+								'oklch(calc(var(--brand-color-l) + 0.14) var(--brand-color-c) var(--brand-color-h))',
+						},
+					},
+				},
+			},
 			typography: {
 				font: {
 					family: {
@@ -56,20 +73,6 @@ const commonMapConfiguration: MapConfiguration = {
 			},
 		},
 	},
-
-	/* TODO: Change theme through KERN
-	vuetify: {
-		theme: {
-			themes: {
-				light: {
-					primary: hamburgDarkBlue,
-					primaryContrast: hamburgWhite,
-					secondary: hamburgWhite,
-					secondaryContrast: hamburgDarkBlue,
-				},
-			},
-		},
-	}, */
 }
 
 const commonAttributions: AttributionsPluginOptions = {
