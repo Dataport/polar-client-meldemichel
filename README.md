@@ -67,8 +67,8 @@ A document rendering the map client could e.g. look like this:
         height: 500px;
         position: relative;
         margin: 5px;
-        -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.5);
-        box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.5);
       }
     </style>
   </head>
