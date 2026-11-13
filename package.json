@@ -55,7 +55,7 @@
 	"dependencies": {
 		"@polar/polar": "^3.0.0-alpha.9",
 		"es-toolkit": "^1.53.2",
-		"i18next": "^26.7.1",
+		"i18next": "^27.1.1",
 		"i18next-vue": "^5.4.0",
 		"ol": "10.11.0",
 		"pinia": "^4.1.0",
