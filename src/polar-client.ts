@@ -1,4 +1,3 @@
-import type { PolarMapInstance } from '@polar/polar'
 import type { Map } from 'ol'
 import type { Vector } from 'ol/layer'
 import type { MeldemichelCreateMapParams } from './types'
@@ -7,9 +6,7 @@ import { addPlugin, subscribe } from '@polar/polar'
 import {
 	fetchServiceRegister,
 	createMap as originalCreateMap,
-	updateState,
 } from '@polar/polar'
-import { usePinsStore } from '@polar/polar/plugins/pins/store'
 import { toMerged } from 'es-toolkit'
 import kernExtraIcons from 'virtual:kern-extra-icons'
 
@@ -40,8 +37,6 @@ const hideBorder = (map: Map) => {
 	).setStyle(null)
 }
 
-let memory: PolarMapInstance | null = null
-
 export const createMap = async ({
 	containerId,
 	mode,
@@ -50,26 +45,6 @@ export const createMap = async ({
 	reportServiceId,
 	configOverride,
 }: MeldemichelCreateMapParams) => {
-	// TODO: This just re-uses one client instance reinstating the old one; Try fixing the memory leak correctly or live with this forever
-	if (memory) {
-		document.getElementById(containerId)?.replaceWith(memory)
-
-		if (configOverride?.pins) {
-			// update may be required on rerender
-			updateState(memory, 'core', 'configuration', {
-				...memory.store.configuration,
-				pins: configOverride.pins,
-			})
-			usePinsStore().setupInitial()
-		}
-
-		if (typeof stadtwaldActive === 'boolean') {
-			useMeldemichelStore().setMapState({
-				stadtwaldActive,
-			})
-		}
-		return memory
-	}
 	if (!Object.keys(MODE).includes(mode)) {
 		console.error(
 			`@polar/client-meldemichel: Critical error. Unknown mode "${mode}" configured. Please use 'COMPLETE', 'REPORT', or 'SINGLE'.`
@@ -110,7 +85,6 @@ export const createMap = async ({
 			stadtwaldActive,
 		})
 	}
-	memory = client
 	return client
 }
 export { subscribe }

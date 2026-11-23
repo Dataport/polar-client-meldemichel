@@ -5,12 +5,15 @@ import { useLayerChooserStore } from '@polar/polar/plugins/layerChooser/store'
 import { usePinsStore } from '@polar/polar/plugins/pins/store'
 import { useCoreStore } from '@polar/polar/store'
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 import { stadtwald } from '../../mapConfigurations'
 
 const readAfmCoordinate = (coordinate: string): number[] =>
 	coordinate.split(',').map((s) => Number(s))
+
+// Plain values only, so that a torn down map can be garbage collected.
+let lastMapState: SetMapStatePayload | null = null
 
 export const useMeldemichelStore = defineStore('external-meldemichel', () => {
 	const coreStore = useCoreStore()
@@ -75,6 +78,26 @@ export const useMeldemichelStore = defineStore('external-meldemichel', () => {
 			pinsStore.coordinate = readAfmCoordinate(vendor_maps_position)
 		}
 	}
+
+	const stadtwaldActive = computed(() =>
+		layerChooserStore.activeMaskIds.includes(stadtwald)
+	)
+
+	watch([mapState, stadtwaldActive], ([state, active]) => {
+		lastMapState = { ...state, stadtwaldActive: active }
+	})
+
+	function setupPlugin() {
+		if (!lastMapState) {
+			return
+		}
+		setMapState(lastMapState)
+		// A newly configured initial pin takes precedence over the restored one.
+		if (coreStore.configuration.pins?.initial) {
+			pinsStore.setupInitial()
+		}
+	}
+
 	return {
 		/**
 		 * Current state of the map to be easily modified by the client.
@@ -85,6 +108,13 @@ export const useMeldemichelStore = defineStore('external-meldemichel', () => {
 		 * Helper function to more easily modify the state of the map.
 		 */
 		setMapState,
+
+		/**
+		 * Restores the state of a previously created map.
+		 *
+		 * @internal
+		 */
+		setupPlugin,
 	}
 })
 

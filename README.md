@@ -42,11 +42,9 @@ It returns a Promise of a map instance. This returned instance is required to re
 
 TODO: Add the breaking changes to the plugin configurations to the migration guide
 
-#### Instance reuse
+#### Rerendering
 
-The `mapInstance` and its HTML environment are kept in the client; it is returned and rerendered on subsequent `createMap` calls to a div with the given `id`. Due to this, everything will appear to the user as it was previously left, including opened menus.
-
-Since in `SINGLE` mode, changes to the pins are required between renders, hence the parameters in `configOverride.pins` are used to update the client. Should additional updates be required, please let us know.
+Each call to `createMap` creates a new map. When the map element is removed from the DOM, e.g. on navigation in a single-page application, the map is torn down automatically. A subsequently created map restores the previous map state, that is, view, background layer, Stadtwald layer, pin, and address. In `SINGLE` mode, a pin given via `configOverride.pins.initial` takes precedence over the restored one.
 
 `subscribe` returns a function that stops the subscription. Call it when leaving the map's page; depending on your framework, e.g. in `beforeUnmount`.
 

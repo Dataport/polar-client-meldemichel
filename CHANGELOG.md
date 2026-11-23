@@ -8,6 +8,7 @@ This release contains breaking changes. See the [migration guide](./MIGRATION.md
 - BREAKING: Remove Jenfeld client variant as the related stele has been discontinued. This includes the query parameter `?zoom`.
 - BREAKING: The map instance returned by `createMap` no longer has a `$store`.
 - BREAKING: `createMap` replaces the container element with a `polar-map` custom element of the same id. The `${containerId}-wrapper` element no longer exists.
+- Change: Each call to `createMap` creates a new map including the previous map state instead of reusing the previous map instance.
 - Feature: `subscribe` is exported by the client, both as named export and as part of the default export.
 - Feature: Styles are now included in the library file. A separate `style.css` is no longer shipped and `configOverride.stylePath` is no longer required.
 - Refactor: The client has been updated to use `vue`@`3` and subsequently `pinia`.
