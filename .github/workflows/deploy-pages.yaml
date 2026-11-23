@@ -1,0 +1,54 @@
+name: Deploy examples to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Deploy examples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: 'package.json'
+          registry-url: https://registry.npmjs.org/
+
+      - name: Cache node_modules
+        id: node-modules-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json', 'patches/**') }}
+
+      - name: Install NPM dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline --no-audit --no-fund
+
+      - name: Build client
+        run: npm run build
+
+      # Examples import `../dist/client-meldemichel.js`, so both folders are published side by side.
+      - name: Assemble site
+        run: |
+          mkdir _site
+          cp -r dist example _site/
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
+        with:
+          folder: _site
+          target-folder: ${{ github.ref_type == 'tag' && github.ref_name || 'development' }}
