@@ -49,7 +49,9 @@
 	<body>
 		<div class="mock-content">
 			<p>This is a minimal test page for the REPORT environment.</p>
-			<div id="polarstern"></div>
+			<div id="polar-page">
+				<div id="polarstern"></div>
+			</div>
 			<button id="rerender">Simulate SPA-style rerendering</button>
 			<h2>Subscribed data</h2>
 			<ul id="subscribed-data-list"></ul>
@@ -107,7 +109,10 @@
 					{ immediate: true }
 				)
 
-				return { un }
+				return () => {
+					un()
+					window._polar = null
+				}
 			}
 
 			const rerender = document.getElementById('rerender')

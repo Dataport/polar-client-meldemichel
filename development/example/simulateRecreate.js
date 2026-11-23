@@ -1,36 +1,47 @@
 /**
- * Adds a `simulateRecreate` method to the window object that is supposed to
- * imitate what happens on re-navigation in an SPA.
+ * Imitates what happens on re-navigation in an SPA:
+ * The page section with the id `polar-page` is torn down completely and
+ * rebuilt from its initial markup.
  * This will only work in production mode.
  *
- * @param {function} setup setup function that results in map creation
+ * Removed maps are registered for finalisation, so a console message shows
+ * once the browser has garbage collected them.
+ *
+ * @param {function} setup Creates the map. May return a clean-up function that
+ * removes all subscriptions and references to the map, like a router would on
+ * leaving the page.
  */
 export const makeSimulateRecreate = async (setup) => {
-	let { un } = await setup()
+	const page = document.getElementById('polar-page')
+	const initialMarkup = page.innerHTML
 	const rerenderButton = document.getElementById('rerender')
+	const registry = new FinalizationRegistry((count) => {
+		// eslint-disable-next-line no-console
+		console.info(`Map #${count} has been garbage collected.`)
+	})
+	let count = 1
+	let cleanup = await setup()
 
 	return () => {
 		if (rerenderButton) {
 			rerenderButton.disabled = true
 		}
 
-		/* All set up watchers/subscribes have to be deleted. */
-		if (un) {
-			un()
-		}
+		cleanup?.()
+		cleanup = null
 
-		/* when re-navigating, the DOM's body is reset – here it is simulated by
-		 * resetting the DOM manually, but usually the SPA should take care of this
-		 * automatically due to the occurring renavigation. */
-		const polarstern = document.getElementById('polarstern')
-		const risingStar = document.createElement('div')
-		risingStar.id = 'polarstern'
-		risingStar.classList.add('polarstern')
-		polarstern?.replaceWith(risingStar)
+		const map = page.querySelector('polar-map')
+		if (map) {
+			registry.register(map, count)
+			// eslint-disable-next-line no-console
+			console.info(`Map #${count} removed, waiting for garbage collection.`)
+		}
+		page.replaceChildren()
 
 		setTimeout(async () => {
-			// render client – a second/third/... time, here
-			;({ un } = await setup())
+			page.innerHTML = initialMarkup
+			count += 1
+			cleanup = await setup()
 			if (rerenderButton) {
 				rerenderButton.disabled = false
 			}

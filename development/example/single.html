@@ -35,7 +35,9 @@
 	<body>
 		<div class="mock-content">
 			<p>This is a minimal test page for the SINGLE environment.</p>
-			<div id="polarstern"></div>
+			<div id="polar-page">
+				<div id="polarstern"></div>
+			</div>
 			<fieldset>
 				<legend>Rerender mode:</legend>
 				<div>
@@ -118,20 +120,23 @@
 					{ immediate: true }
 				)
 
-				return { un }
+				return () => {
+					un()
+					mapInstance = null
+				}
 			}
 
 			document.getElementById('rerender').onclick =
 				await makeSimulateRecreate(setup)
 
 			document.getElementById('stadtwaldOn').onclick = () => {
-				mapInstance.store.getPluginStore('external-meldemichel').setMapState({
+				mapInstance?.store.getPluginStore('external-meldemichel').setMapState({
 					stadtwaldActive: true,
 				})
 			}
 
 			document.getElementById('stadtwaldOff').onclick = () => {
-				mapInstance.store.getPluginStore('external-meldemichel').setMapState({
+				mapInstance?.store.getPluginStore('external-meldemichel').setMapState({
 					stadtwaldActive: false,
 				})
 			}
