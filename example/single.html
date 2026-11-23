@@ -51,7 +51,6 @@
 					<label for="movable">movable</label>
 				</div>
 				<div>
-					<!-- eslint-disable-next-line @html-eslint/attrs-newline -->
 					<input type="radio" id="immovable" name="move" value="immovable" />
 					<label for="immovable">immovable</label>
 				</div>
@@ -79,7 +78,6 @@
 			let mapInstance
 
 			const setup = async () => {
-				// eslint-disable-next-line
 				const inputElement = document.querySelector(
 					'input[name="move"]:checked'
 				)
@@ -123,7 +121,6 @@
 				return { un }
 			}
 
-			// eslint-disable-next-line
 			document.getElementById('rerender').onclick =
 				await makeSimulateRecreate(setup)
 

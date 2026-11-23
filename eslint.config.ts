@@ -8,6 +8,7 @@ import tsConfig from '@dataport/eslint-config-geodev/typescript'
 import vueConfig from '@dataport/eslint-config-geodev/vue'
 import jsInHtml from 'eslint-plugin-html'
 import importX from 'eslint-plugin-import-x'
+import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-plugin-prettier/recommended'
 import { defineConfig } from 'eslint/config'
 
@@ -121,7 +122,21 @@ const clientVueConfig = defineConfig({
 })
 
 const clientHtmlConfig = defineConfig({
+	/*
+	 * eslint-plugin-html lints HTML files twice:
+	 * once as a whole with @html-eslint/parser and once per <script>.
+	 * Running prettier/prettier in both leads to contradicting reports as the
+	 * script has more spaces per line.
+	 * Registering the rule under the `@html-eslint/` namespace
+	 * makes eslint-plugin-html skip it for the inline-script pass.
+	 */
+	plugins: { '@html-eslint/prettier': prettierPlugin },
 	rules: {
+		'prettier/prettier': 'off',
+		'@html-eslint/prettier/prettier': 'error',
+		// Conflicts with Prettier, which decides on attribute line breaks
+		'@html-eslint/attrs-newline': 'off',
+
 		// POLAR-specific rules
 		'@html-eslint/require-closing-tags': ['error', { selfClosing: 'always' }],
 		'@html-eslint/no-extra-spacing-attrs': [
