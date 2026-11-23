@@ -3,7 +3,7 @@ import type { Map } from 'ol'
 import type { Vector } from 'ol/layer'
 import type { MeldemichelCreateMapParams } from './types'
 
-import { addPlugin } from '@polar/polar'
+import { addPlugin, subscribe } from '@polar/polar'
 import {
 	fetchServiceRegister,
 	createMap as originalCreateMap,
@@ -113,4 +113,5 @@ export const createMap = async ({
 	memory = client
 	return client
 }
-export default { createMap }
+export { subscribe }
+export default { createMap, subscribe }
