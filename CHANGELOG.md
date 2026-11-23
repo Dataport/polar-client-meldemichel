@@ -2,8 +2,16 @@
 
 ## unpublished
 
-- BREAKING: Remove Jenfeld client variant as the related stele has been discontinued.
-- Refactor: The client has been updated to use Vue@v3 and subsequently Pinia.
+This release contains breaking changes. See the [migration guide](./MIGRATION.md) on how to upgrade from version 1.x.
+
+- BREAKING: The package now requires node@`^24.22.1` and npm@`^11.19.1`.
+- BREAKING: Remove Jenfeld client variant as the related stele has been discontinued. This includes the query parameter `?zoom`.
+- BREAKING: The map instance returned by `createMap` no longer has a `$store`.
+- BREAKING: `createMap` replaces the container element with a `polar-map` custom element of the same id. The `${containerId}-wrapper` element no longer exists.
+- Feature: `subscribe` is exported by the client, both as named export and as part of the default export.
+- Feature: Styles are now included in the library file. A separate `style.css` is no longer shipped and `configOverride.stylePath` is no longer required.
+- Refactor: The client has been updated to use `vue`@`3` and subsequently `pinia`.
+- Chore: The client has been moved to its own repository. Releases are now published at [Dataport/polar-client-meldemichel](https://github.com/Dataport/polar-client-meldemichel/releases).
 
 ## 1.4.1
 
