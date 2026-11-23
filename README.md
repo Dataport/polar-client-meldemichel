@@ -89,7 +89,7 @@ A document rendering the map client could e.g. look like this:
             initial: {
               centerOn: true,
               // The coordinate that is inspected/worked on
-              coordinates: [569028, 5932885],
+              coordinate: [569028, 5932885],
             },
             movable: 'drag', // or 'none' to have an immovable pin
             style: {

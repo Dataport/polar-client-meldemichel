@@ -44,7 +44,7 @@
 			const mode = 'COMPLETE' // COMPLETE, REPORT, SINGLE
 			const stage = false // true, false
 			// const movablePin = 'drag' // 'drag', 'none'
-			// const coordinates = [569028, 5932885] // anything in HH in EPSG:25832
+			// const coordinate = [569028, 5932885] // anything in HH in EPSG:25832
 
 			const mapInstance = await client.createMap({
 				containerId: 'polarstern',
@@ -59,7 +59,7 @@
 			               pins: {
 			                 initial: {
 			                   centerOn: true,
-			                   coordinates,
+			                   coordinate,
 			                 },
 			                 movable: movablePin,
 			                 style: {
