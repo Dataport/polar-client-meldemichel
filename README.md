@@ -29,7 +29,7 @@ When using `import mapClient from '@polar/client-meldemichel'`, the object `mapC
 This is the main method required to get the client up and running. Should you use another import method, check the package's `dist` folder for available files.
 
 The method expects a single object with the following parameters.
-It returns a Promise of a map instance. This returned instance is required to retrieve information from the map.
+It returns a Promise of a map instance. This returned instance is required to retrieve information from the map, e.g. via `subscribe`, which the package exports as well.
 
 | field | type | description |
 | - | - | - |
@@ -40,7 +40,6 @@ It returns a Promise of a map instance. This returned instance is required to re
 | `reportServiceId` | `string?` | `COMPLETE` mode only. ID of the report layer to display. Both the Filter and the Feature List will work with this layer. The client will also provide tooltips and cluster the features. |
 | `stadtwaldActive` | `boolean?` | This layer only works in `'SINGLE'` mode and should not be activated in the others. If not set, any existing previous state is kept; off by default. |
 
-TODO: All the following sections (except Stay in Touch) need to be adjusted
 TODO: Add the breaking changes to the plugin configurations to the migration guide
 
 #### Instance reuse
@@ -49,7 +48,7 @@ The `mapInstance` and its HTML environment are kept in the client; it is returne
 
 Since in `SINGLE` mode, changes to the pins are required between renders, hence the parameters in `configOverride.pins` are used to update the client. Should additional updates be required, please let us know.
 
-Calling `watch`/`subscribe` on the client will return an `unwatch`/`unsubscribe` method. It should be called on leaving the map's page; depending on framework/library in e.g. the `beforeDestroy` or `beforeUnmount` method.
+`subscribe` returns a function that stops the subscription. Call it when leaving the map's page; depending on your framework, e.g. in `beforeUnmount`.
 
 ### Rendering in SINGLE or REPORT mode
 
@@ -76,7 +75,7 @@ A document rendering the map client could e.g. look like this:
       <noscript>Please use a browser with active JavaScript to use the map client.</noscript>
     </div>
     <script type="module">
-      import meldemichelMapClient from './client-meldemichel.js'
+      import meldemichelMapClient, { subscribe } from './client-meldemichel.js'
 
       const meldemichelMapInstance = await meldemichelMapClient.createMap({
         containerId: 'meldemichel-map-client',
@@ -99,8 +98,12 @@ A document rendering the map client could e.g. look like this:
         },
       })
 
+      const meldemichelStore = meldemichelMapInstance.store.getPluginStore(
+        'external-meldemichel'
+      )
+
       // If an old view state should be set, use this snippet:
-      meldemichelMapInstance.$store.dispatch('meldemichel/setMapState', {
+      meldemichelStore.setMapState({
         vendor_maps_position: '566167.224436667,5935872.419250831',
         vendor_maps_address_str: 'Alte Rabenstraße',
         vendor_maps_address_hnr: '28',
@@ -112,13 +115,15 @@ A document rendering the map client could e.g. look like this:
 
       /* To change the stadtwald layer's visibility in 'SINGLE' mode, use this;
        * this key can be used standalone or within the call seen above */
-      meldemichelMapInstance.$store.dispatch('meldemichel/setMapState', {
+      meldemichelStore.setMapState({
         stadtwaldActive: true, // or false
       })
 
       // to retrieve map state updates, use this snippet:
-      const unwatch = mapInstance.$store.watch(
-        (_, getters) => getters["meldemichel/mapState"],
+      const unsubscribe = subscribe(
+        meldemichelMapInstance,
+        'external-meldemichel',
+        'mapState',
         ({
           mapCenter,
           mapZoomLevel,
@@ -139,9 +144,8 @@ A document rendering the map client could e.g. look like this:
             Address: ${vendor_maps_address_str + ' ' + vendor_maps_address_hnr}
             PLZ: ${vendor_maps_address_plz}
             Distance to address: ${vendor_maps_distance_to}`)
-        },
-        // will return initial values; delete parameter if not desired
-        { immediate: true }
+        }
+        // called immediately with the initial values; pass `{ immediate: false }` as fifth argument if not desired
       )
     </script>
   </body>
@@ -170,19 +174,14 @@ The following script tag can then be used to render the productive services of t
     mode: 'COMPLETE',
     afmUrl: `https://afm.hamburg.de/intelliform/forms/mml_melde_michel/standard/mml_melde_michel/index`,
     reportServiceId: '6059',
-    configOverride: {
-      // adjust path to where the client is
-      stylePath: '../dist/style.css'
-    }
   })
 </script>
 ```
 
-POLAR will rebuild the given div to contain a ShadowDOM that hosts the map. The outer div will change to have the id `meldemichel-map-client-wrapper` (resp. `${yourId}-wrapper`) and can be used to style the map's height and width with, for example:
+`createMap` replaces the given div with a `polar-map` element that keeps its id and hosts the map in a ShadowDOM. Use the id to style the map's height and width, for example:
 
 ```css
-#meldemichel-map-client-wrapper {
-  /* "position: relative;" is the minimum required styling */
+#meldemichel-map-client {
   position: relative;
   height: 400px;
   width: 100%;
@@ -198,7 +197,7 @@ To also serve users with JS disabled some content, this fragment is common:
 </div>
 ```
 
-For a complete example, you may also check [the running embedded scenario](https://dataport.github.io/polar/docs/meldemichel/example/complete_embedded.html) or its [source file](https://github.com/Dataport/polar/blob/main/packages/clients/meldemichel/example/complete_embedded.html).
+For a complete example, you may also check [the running embedded scenario](https://dataport.github.io/polar-client-meldemichel/development/example/complete_embedded.html) or its [source file](./example/complete_embedded.html).
 
 
 ## Stay In Touch
