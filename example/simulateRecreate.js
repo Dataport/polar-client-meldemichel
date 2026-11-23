@@ -1,9 +1,7 @@
 /**
  * Adds a `simulateRecreate` method to the window object that is supposed to
- * imitate what happens on re-navigation in an SPA. This will only work in
- * production mode, and it won't work with the old-style CSS imports, requiring
- * use of the new core field `stylePath`. (It is automatically `./style.css` in
- * case no old-style `data-polar="true"` is present.)
+ * imitate what happens on re-navigation in an SPA.
+ * This will only work in production mode.
  *
  * @param {function} setup setup function that results in map creation
  */
@@ -24,7 +22,7 @@ export const makeSimulateRecreate = async (setup) => {
 		/* when re-navigating, the DOM's body is reset – here it is simulated by
 		 * resetting the DOM manually, but usually the SPA should take care of this
 		 * automatically due to the occurring renavigation. */
-		const polarstern = document.getElementById('polarstern-wrapper')
+		const polarstern = document.getElementById('polarstern')
 		const risingStar = document.createElement('div')
 		risingStar.id = 'polarstern'
 		risingStar.classList.add('polarstern')

@@ -104,8 +104,10 @@
 
 				const dataList = document.getElementById('subscribed-data-list')
 
-				const un = mapInstance.$store.watch(
-					(_, getters) => getters['meldemichel/mapState'],
+				const un = meldemichelMapClient.subscribe(
+					mapInstance,
+					'external-meldemichel',
+					'mapState',
 					(mapState) => {
 						dataList.innerHTML = ''
 						const mapStateEntries = Object.entries(mapState)
@@ -125,13 +127,13 @@
 				await makeSimulateRecreate(setup)
 
 			document.getElementById('stadtwaldOn').onclick = () => {
-				mapInstance.$store.dispatch('meldemichel/setMapState', {
+				mapInstance.store.getPluginStore('external-meldemichel').setMapState({
 					stadtwaldActive: true,
 				})
 			}
 
 			document.getElementById('stadtwaldOff').onclick = () => {
-				mapInstance.$store.dispatch('meldemichel/setMapState', {
+				mapInstance.store.getPluginStore('external-meldemichel').setMapState({
 					stadtwaldActive: false,
 				})
 			}

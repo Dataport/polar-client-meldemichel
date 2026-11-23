@@ -74,15 +74,17 @@
 				window._polar = {
 					mapInstance,
 					setMapState: () =>
-						mapInstance.$store.dispatch('meldemichel/setMapState', {
-							vendor_maps_position: '566167.224436667,5935872.419250831',
-							// inconsistency intentional to test whether field is autofilled
-							vendor_maps_address_str: 'Mümmelmannsberg',
-							vendor_maps_address_hnr: '72',
-							mapZoomLevel: 6,
-							mapBaseLayer: 34127,
-							mapCenter: '566808.8386735287,5935896.23173797',
-						}),
+						mapInstance.store
+							.getPluginStore('external-meldemichel')
+							.setMapState({
+								vendor_maps_position: '566167.224436667,5935872.419250831',
+								// inconsistency intentional to test whether field is autofilled
+								vendor_maps_address_str: 'Mümmelmannsberg',
+								vendor_maps_address_hnr: '72',
+								mapZoomLevel: 6,
+								mapBaseLayer: 34127,
+								mapCenter: '566808.8386735287,5935896.23173797',
+							}),
 				}
 
 				// NOTE: Uncomment to test immediate execution
@@ -91,8 +93,10 @@
 				// subscribing to store values
 				const dataList = document.getElementById('subscribed-data-list')
 
-				const un = mapInstance.$store.watch(
-					(_, getters) => getters['meldemichel/mapState'],
+				const un = meldemichelMapClient.subscribe(
+					mapInstance,
+					'external-meldemichel',
+					'mapState',
 					(mapState) => {
 						dataList.innerHTML = ''
 						const mapStateEntries = Object.entries(mapState)
