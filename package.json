@@ -14,17 +14,17 @@
 	"license": "EUPL-1.2",
 	"type": "module",
 	"author": "Dataport AöR <polar@dataport.de>",
-	"main": "dist/polar-client.js",
-	"module": "dist/polar-client.js",
-	"types": "dist/polar-client.d.ts",
+	"main": "dist/client-meldemichel.js",
+	"module": "dist/client-meldemichel.js",
+	"types": "dist/client-meldemichel.d.ts",
 	"engines": {
 		"node": "^24.22.1",
 		"npm": "^11.19.1"
 	},
 	"exports": {
 		".": {
-			"types": "./dist/polar-client.d.ts",
-			"default": "./dist/polar-client.js"
+			"types": "./dist/client-meldemichel.d.ts",
+			"default": "./dist/client-meldemichel.js"
 		}
 	},
 	"repository": {
@@ -35,6 +35,7 @@
 		"dist/**/*",
 		"example/**/*",
 		"CHANGELOG.md",
+		"MIGRATION.md",
 		"README.md"
 	],
 	"scripts": {

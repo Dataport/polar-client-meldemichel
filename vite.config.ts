@@ -47,7 +47,7 @@ export default defineConfig(({ command, isPreview, mode }) => ({
 			name: 'POLAR Meldemichel Client',
 			formats: ['es'],
 			entry: resolve(import.meta.dirname, 'src/polar-client.ts'),
-			fileName: 'polar-client',
+			fileName: 'client-meldemichel',
 		},
 		sourcemap: true,
 		target: 'esnext',
