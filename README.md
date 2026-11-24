@@ -37,6 +37,7 @@ It returns a Promise of a map instance. This returned instance is required to re
 | `mode` | `'COMPLETE' \| 'REPORT' \| 'SINGLE'` | See chapters below for an overview of the modes. |
 | `afmUrl` | `string?` |  `COMPLETE` mode only. The URL used here is the URL of the AfM service to open to create a new damage report. |
 | `configOverride` | `object?` | This can be used to override the configuration of any installed plugin; see full documentation. It is also used to set initial pins in `SINGLE` mode. See documentation of `SINGLE` further below. |
+| `hideZoom` | `boolean?` | If `true`, the zoom buttons are not shown. Useful for embedded maps with little space; zooming via mouse wheel and touch gestures remains possible. Defaults to `false`. |
 | `reportServiceId` | `string?` | `COMPLETE` mode only. ID of the report layer to display. Both the Filter and the Feature List will work with this layer. The client will also provide tooltips and cluster the features. |
 | `stadtwaldActive` | `boolean?` | This layer only works in `'SINGLE'` mode and should not be activated in the others. If not set, any existing previous state is kept; off by default. |
 

@@ -18,12 +18,13 @@ import createMenus from './utils/createMenus'
 
 export const addPlugins = (
 	client: PolarMapInstance,
-	mode: keyof typeof MODE
+	mode: keyof typeof MODE,
+	hideZoom: boolean
 ) => {
 	const iconMenu = IconMenu({
 		initiallyOpen: 'layerChooser',
 		displayComponent: true,
-		menus: createMenus(mode),
+		menus: createMenus(mode, hideZoom),
 		layoutTag: 'TOP_RIGHT',
 	})
 

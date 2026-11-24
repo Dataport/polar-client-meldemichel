@@ -9,7 +9,7 @@ import { MODE } from '../enums'
 import { skat } from '../locales'
 import Gfi from '../plugins/gfi'
 
-export default function (mode: keyof typeof MODE) {
+export default function (mode: keyof typeof MODE, hideZoom: boolean) {
 	return [
 		[
 			{
@@ -43,7 +43,7 @@ export default function (mode: keyof typeof MODE) {
 					},
 				}),
 			},
-			{
+			!hideZoom && {
 				plugin: Zoom(),
 			},
 			mode !== MODE.REPORT && {

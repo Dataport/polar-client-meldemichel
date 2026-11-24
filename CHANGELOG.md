@@ -10,6 +10,7 @@ This release contains breaking changes. See the [migration guide](./MIGRATION.md
 - BREAKING: `createMap` replaces the container element with a `polar-map` custom element of the same id. The `${containerId}-wrapper` element no longer exists.
 - Change: Each call to `createMap` creates a new map including the previous map state instead of reusing the previous map instance.
 - Feature: `subscribe` is exported by the client, both as named export and as part of the default export.
+- Feature: Add `createMap` parameter `hideZoom` to hide the zoom buttons, e.g. for embedded maps with little space.
 - Feature: Styles are now included in the library file. A separate `style.css` is no longer shipped and `configOverride.stylePath` is no longer required.
 - Refactor: The client has been updated to use `vue`@`3` and subsequently `pinia`.
 - Chore: The client has been moved to its own repository. Releases are now published at [Dataport/polar-client-meldemichel](https://github.com/Dataport/polar-client-meldemichel/releases).

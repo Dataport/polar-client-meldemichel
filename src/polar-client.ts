@@ -44,6 +44,7 @@ export const createMap = async ({
 	stadtwaldActive,
 	reportServiceId,
 	configOverride,
+	hideZoom = false,
 }: MeldemichelCreateMapParams) => {
 	if (!Object.keys(MODE).includes(mode)) {
 		console.error(
@@ -67,7 +68,7 @@ export const createMap = async ({
 
 	setBackgroundImage(client)
 
-	addPlugins(client, mode)
+	addPlugins(client, mode, hideZoom)
 	addPlugin(
 		client,
 		meldemichel({

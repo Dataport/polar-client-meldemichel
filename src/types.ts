@@ -6,6 +6,7 @@ export interface MeldemichelCreateMapParams {
 	mode: keyof typeof MODE
 	afmUrl?: string
 	configOverride?: MapConfiguration
+	hideZoom?: boolean
 	reportServiceId?: string
 	stadtwaldActive?: boolean
 }
