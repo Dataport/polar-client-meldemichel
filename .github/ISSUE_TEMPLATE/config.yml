@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: POLAR Questions & Discussions
+    url: https://github.com/Dataport/polar/discussions
+    about: For general questions and discussions about POLAR (not specific to the Melde-Michel client), use the GitHub discussions of the POLAR main repository.
