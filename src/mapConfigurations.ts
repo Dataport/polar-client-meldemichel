@@ -42,7 +42,6 @@ const commonMapConfiguration: MapConfiguration = {
 		},
 	],
 
-	// TODO: Document in POLAR, that css needs to be imported if not set here
 	theme: {
 		brandColor: {
 			l: '0.3133',
@@ -203,7 +202,6 @@ const mapConfigurations: Record<
 				id: stadtwald,
 				visibility: false,
 				type: 'mask',
-				// TODO: Layers can not yet bet localized ._. -> Change in POLAR
 				name: 'Stadtwald',
 			},
 		],

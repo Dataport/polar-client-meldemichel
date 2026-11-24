@@ -63,7 +63,6 @@ export const createMap = async ({
 		),
 		register
 	)
-	// TODO: Document in POLAR that clients have to add their own extra icons sheet to the shadowRoot if they were to use additional ones. --> Unless you define no icons yourself, then no need
 	client.shadowRoot?.adoptedStyleSheets.push(kernExtraIcons)
 
 	setBackgroundImage(client)
