@@ -8,7 +8,7 @@ Whether street lighting is not working or a bench in the city park is broken, th
 The client comes in different flavours. A view exists for officials in charge, for citizens during reporting, and for citizens as a general overview.
 While the first two clients are delivered as usable javascript packages and are used within the AfM infrastructure, the last one is delivered as a full HTML page.
 
-This client is based on [POLAR](https://github.com/Dataport/polar) and subsequently the [masterportalAPI](https://bitbucket.org/geowerkstatt-hamburg/masterportalapi/src/master/)
+This client is based on [POLAR](https://github.com/Dataport/polar) and subsequently the [masterportalAPI](https://gitlab.opencode.de/lgvhh/urban-data-solutions/masterportalapi/)
 The following documentation only contains how this specific client can be used, and the minimal information required to get it running.
 
 TODO: Link to full documentation regarding all configuration options of POLAR.
