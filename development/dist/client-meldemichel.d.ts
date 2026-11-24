@@ -2,10 +2,10 @@ import { MapConfiguration } from '@polar/polar';
 import { PolarMapInstance } from '@polar/polar';
 import { subscribe } from '@polar/polar';
 
-export declare const createMap: ({ containerId, mode, afmUrl, stadtwaldActive, reportServiceId, configOverride, }: MeldemichelCreateMapParams) => Promise< PolarMapInstance>;
+export declare const createMap: ({ containerId, mode, afmUrl, stadtwaldActive, reportServiceId, configOverride, hideZoom, }: MeldemichelCreateMapParams) => Promise< PolarMapInstance>;
 
 declare const _default: {
-    createMap: ({ containerId, mode, afmUrl, stadtwaldActive, reportServiceId, configOverride, }: MeldemichelCreateMapParams) => Promise< PolarMapInstance>;
+    createMap: ({ containerId, mode, afmUrl, stadtwaldActive, reportServiceId, configOverride, hideZoom, }: MeldemichelCreateMapParams) => Promise< PolarMapInstance>;
     subscribe: typeof subscribe;
 };
 export default _default;
@@ -15,6 +15,7 @@ declare interface MeldemichelCreateMapParams {
     mode: keyof typeof MODE;
     afmUrl?: string;
     configOverride?: MapConfiguration;
+    hideZoom?: boolean;
     reportServiceId?: string;
     stadtwaldActive?: boolean;
 }
