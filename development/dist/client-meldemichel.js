@@ -45869,7 +45869,7 @@ var T2 = {
 		"@types/geojson": "7946.0.16",
 		"@types/node": "^24.19.2",
 		"@vitejs/plugin-vue": "^6.0.11",
-		"@vitest/coverage-v8": "^5.1.0",
+		"@vitest/coverage-v8": "^5.1.1",
 		"@vitest/ui": "^5.1.0",
 		"@vue/test-utils": "^2.6.0",
 		"@vue/tsconfig": "^0.9.0",
