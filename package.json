@@ -60,7 +60,7 @@
 		"i18next-vue": "^5.4.0",
 		"ol": "10.11.0",
 		"pinia": "^4.1.0",
-		"vue": "^3.5.45"
+		"vue": "^3.5.46"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^21.2.4",
